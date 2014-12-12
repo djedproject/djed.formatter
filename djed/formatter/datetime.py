@@ -42,7 +42,7 @@ def time_formatter(request, value, format='medium',
 
     if not tzinfo:
         settings = request.registry.settings
-        tzinfo = get_timezone(settings['djed.formatter.timezone'])
+        tzinfo = get_timezone(settings['pyramid.default_timezone_name'])
 
     if not locale_name:
         locale_name = request.locale_name
@@ -88,7 +88,7 @@ def datetime_formatter(request, value, format='medium',
 
     if not tzinfo:
         settings = request.registry.settings
-        tzinfo = get_timezone(settings['djed.formatter.timezone'])
+        tzinfo = get_timezone(settings['pyramid.default_timezone_name'])
 
     if not locale_name:
         locale_name = request.locale_name

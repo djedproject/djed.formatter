@@ -66,8 +66,8 @@ class formatters(object):
 
 def includeme(config):
     settings = config.get_settings()
-    settings['djed.formatter.timezone'] = settings.get(
-        'djed.formatter.timezone', 'UTC')
+    settings['pyramid.default_timezone_name'] = settings.get(
+        'pyramid.default_timezone_name', 'UTC')
 
     config.add_directive('add_formatter', add_formatter)
     config.add_request_method(formatters, 'format', True, True)
