@@ -11,6 +11,7 @@ from babel.dates import (
     format_date,
     format_datetime,
     format_time,
+    format_timedelta,
     get_timezone
 )
 from pyramid.compat import text_type
@@ -95,58 +96,33 @@ def datetime_formatter(request, value, format='medium',
     return text_type(format_datetime(value, format, tzinfo, locale_name))
 
 
-def timedelta_formatter(request, value, type='short'):
+def timedelta_formatter(request, value, granularity='second', threshold=.85,
+                        add_direction=False, format='medium',
+                        locale_name=None):
     """Timedelta formatter
 
-    Full format::
+    Format::
 
       >> td = timedelta(hours=10, minutes=5, seconds=45)
-      >> request.format.timedelta(td, 'full')
-      '10 hour(s) 5 min(s) 45 sec(s)'
-
-    Seconds::
-
-      >> request.format.timedelta(td, 'seconds')
-      '36345.0000'
+      >> request.format.timedelta(td, format='medium')
+      '10 hours'
+      >> request.format.timedelta(td, format='short')
+      '10 hrs'
 
 
     Default::
 
       >> request.format.timedelta(td)
-      '10:05:45'
+      '10 hours'
 
     """
     if not isinstance(value, timedelta):
         return value
 
-    if type == 'full':
-        hours = value.seconds // 3600
-        hs = hours * 3600
-        mins = (value.seconds - hs) // 60
-        ms = mins * 60
-        secs = value.seconds - hs - ms
-        frm = []
-        translate = request.localizer.translate
+    if not locale_name:
+        locale_name = request.locale_name
 
-        if hours:
-            frm.append(translate(
-                '${hours} hour(s)', 'djed.formatter', {'hours': hours}))
-        if mins:
-            frm.append(translate(
-                '${mins} min(s)', 'djed.formatter', {'mins': mins}))
-        if secs:
-            frm.append(translate(
-                '${secs} sec(s)', 'djed.formatter', {'secs': secs}))
-
-        return ' '.join(frm)
-
-    elif type == 'medium':
-        return str(value)
-
-    elif type == 'seconds':
-        s = value.seconds + value.microseconds / 1000000.0
-        return '%2.4f' % s
-
-    else:
-        return str(value).split('.')[0]
+    return text_type(format_timedelta(
+        value, format=format, granularity=granularity, threshold=threshold,
+        add_direction=add_direction, locale=locale_name))
 

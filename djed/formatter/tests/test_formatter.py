@@ -159,27 +159,26 @@ class TestFormatter(BaseTestCase):
         # format only timedelta
         self.assertEqual(format.timedelta('text string'), 'text string')
 
-        # full format
         td = timedelta(hours=10, minutes=5, seconds=45)
 
-        self.assertEqual(format.timedelta(td, 'full'),
-                         '10 hour(s) 5 min(s) 45 sec(s)')
-
         # medium format
-        self.assertEqual(format.timedelta(td, 'medium'),
-                         '10:05:45')
+        self.assertEqual(format.timedelta(td, format='medium'),
+                         '10 hours')
 
-        # seconds format
-        self.assertEqual(format.timedelta(td, 'seconds'),
-                         '36345.0000')
+        # short format
+        self.assertEqual(format.timedelta(td, format='short'),
+                         '10 hrs')
 
         # default format
-        self.assertEqual(format.timedelta(td), '10:05:45')
+        self.assertEqual(format.timedelta(td), '10 hours')
+
+        # locale format
+        self.assertEqual(format.timedelta(td, locale_name='es'), '10 horas')
 
     def test_size_formatter(self):
         format = self.request.format
 
-        # format only timedelta
+        # format only size
         self.assertEqual(format.size('text string'), 'text string')
 
         v = 1024
