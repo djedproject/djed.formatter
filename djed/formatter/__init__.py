@@ -67,7 +67,7 @@ class formatters(object):
 def includeme(config):
     settings = config.get_settings()
     settings['pyramid.default_timezone_name'] = settings.get(
-        'pyramid.default_timezone_name', 'UTC')
+        'pyramid.default_timezone_name', 'utc')
 
     config.add_directive('add_formatter', add_formatter)
     config.add_request_method(formatters, 'format', True, True)
