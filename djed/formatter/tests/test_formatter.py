@@ -190,3 +190,16 @@ class TestFormatter(BaseTestCase):
         self.assertEqual(format.size(1024*768*768, 'm'), '576.00 MB')
 
         self.assertEqual(format.size(1024*768*768, 'g'), '0.56 GB')
+
+class TestFormatterDefaultLocale(BaseTestCase):
+
+    _settings = {
+        'pyramid.default_locale_name': 'es'
+    }
+
+    def test_default_locale(self):
+        format = self.request.format
+
+        dt = datetime(2011, 2, 6, 10, 35, 45, 80)
+        self.assertEqual(format.date(dt, 'full'),
+                         'domingo, 6 de febrero de 2011')
