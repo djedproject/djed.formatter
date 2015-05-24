@@ -23,7 +23,7 @@ tests_require = install_requires + [
 setup(
     name='djed.formatter',
     version='0.1.dev0',
-    description='djed.formatter',
+    description='Formatting helpers for pyramid',
     long_description='\n\n'.join([README, CHANGES]),
     classifiers=[
         "Framework :: Pyramid",
