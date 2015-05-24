@@ -14,7 +14,7 @@ install_requires = [
     'pytz',
 ]
 
-tests_require = install_requires + [
+tests_require = [
     'nose',
     'webtest',
 ]
