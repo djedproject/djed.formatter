@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from pyramid.config import Configurator
 from pyramid.exceptions import ConfigurationConflictError
 
-from base import BaseTestCase
+from .base import BaseTestCase
 
 
 class TestFormatter(BaseTestCase):
