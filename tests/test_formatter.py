@@ -11,7 +11,7 @@ class TestFormatter(BaseTestCase):
 
     def test_formatter_registration(self):
         def simple(request, v):
-            return 'simple-%s'%v
+            return 'simple-%s' % v
 
         self.config.add_formatter('simple', simple)
 
@@ -21,13 +21,14 @@ class TestFormatter(BaseTestCase):
 
     def test_formatter_cache(self):
         def simple(request, v):
-            return 'simple-%s'%v
+            return 'simple-%s' % v
 
         self.config.add_formatter('simple', simple)
 
         simple = self.request.format['simple']
         self.assertIs(simple, self.request.format['simple'])
-        self.assertIs(self.request.format['simple'], self.request.format.simple)
+        self.assertIs(self.request.format['simple'],
+                      self.request.format.simple)
 
         request = self.make_request()
         self.assertIsNot(simple, request.format.simple)
@@ -190,6 +191,7 @@ class TestFormatter(BaseTestCase):
         self.assertEqual(format.size(1024*768*768, 'm'), '576.00 MB')
 
         self.assertEqual(format.size(1024*768*768, 'g'), '0.56 GB')
+
 
 class TestFormatterDefaultLocale(BaseTestCase):
 

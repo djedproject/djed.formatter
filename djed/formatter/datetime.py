@@ -1,12 +1,10 @@
 """ date/time formatters """
-import pytz
 from datetime import (
     date,
     datetime,
     time,
     timedelta
 )
-from babel.core import default_locale
 from babel.dates import (
     format_date,
     format_datetime,
@@ -125,4 +123,3 @@ def timedelta_formatter(request, value, granularity='second', threshold=.85,
     return text_type(format_timedelta(
         value, format=format, granularity=granularity, threshold=threshold,
         add_direction=add_direction, locale=locale_name))
-

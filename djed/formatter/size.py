@@ -7,6 +7,7 @@ _size_types = {
     'g': (1024.0*1024.0*1024.0, 'GB'),
 }
 
+
 def size_formatter(request, value, type='k'):
     """Size formatter
 

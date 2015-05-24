@@ -76,4 +76,3 @@ def includeme(config):
     config.add_formatter('datetime', datetime_formatter)
     config.add_formatter('timedelta', timedelta_formatter)
     config.add_formatter('size', size_formatter)
-
