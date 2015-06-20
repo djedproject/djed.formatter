@@ -4,10 +4,12 @@ from datetime import datetime, timedelta
 from pyramid.config import Configurator
 from pyramid.exceptions import ConfigurationConflictError
 
-from .base import BaseTestCase
+from djed.testing import BaseTestCase
 
 
 class TestFormatter(BaseTestCase):
+
+    _includes = ('djed.formatter',)
 
     def test_formatter_registration(self):
         def simple(request, v):
@@ -195,6 +197,7 @@ class TestFormatter(BaseTestCase):
 
 class TestFormatterDefaultLocale(BaseTestCase):
 
+    _includes = ('djed.formatter',)
     _settings = {
         'pyramid.default_locale_name': 'es'
     }

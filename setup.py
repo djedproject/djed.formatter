@@ -15,8 +15,7 @@ install_requires = [
 ]
 
 tests_require = [
-    'nose',
-    'webtest',
+    'djed.testing',
 ]
 
 
