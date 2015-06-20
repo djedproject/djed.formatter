@@ -1,13 +1,13 @@
 """ formatters """
 from pyramid.registry import Introspectable
 
-from djed.formatter.datetime import (
+from .datetime import (
     date_formatter,
     datetime_formatter,
     time_formatter,
     timedelta_formatter,
 )
-from djed.formatter.size import size_formatter
+from .size import size_formatter
 
 
 ID_FORMATTER = 'djed:formatter'
